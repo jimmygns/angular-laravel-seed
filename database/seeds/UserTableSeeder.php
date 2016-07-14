@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
             'email' => str_random(10).'@gmail.com',
             'password' => bcrypt('secret'),
             'remember_token' => str_random(60),
+            'group_id' => 2,
             ]);
         } 
 
@@ -27,6 +28,7 @@ class UserTableSeeder extends Seeder
             'email' => 'jimmygns@me.com',
             'password' => bcrypt('123456'),
             'remember_token' => str_random(60),
+            'group_id' => 1,
             ]);
     }
 }

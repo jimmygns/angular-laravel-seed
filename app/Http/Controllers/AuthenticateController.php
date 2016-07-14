@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
 use App\User;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -34,12 +35,13 @@ class AuthenticateController extends Controller
             'name' => $credentials['name'],
             'email' => $credentials['email'],
             'password' => bcrypt($credentials['password']),
+            'group_id' => 2,
             ]);
         }catch (\Illuminate\Database\QueryException $e) {
-           return response()->json(['error' => 'User already exists.']);
+           return response()->json(['error' => 'User already exists.'], 401);
         }
         $token = JWTAuth::fromUser($user);
-        return response()->json(compact('token'));
+        return response()->json(['success'=>['token'=>$token,'role'=>'user']]);
 
    }
 
@@ -57,9 +59,11 @@ class AuthenticateController extends Controller
             // something went wrong whilst attempting to encode the token
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
+        $current_user=Auth::User();
+        $role=$current_user->group()->first()->group_name;
+        
         // all good so return the token
-        return response()->json(compact('token'));
+        return response()->json(['success'=>['token'=>$token,'role'=>$role]]);
     }
 
     public function logout(Request $request){

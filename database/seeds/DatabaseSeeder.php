@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use database\seeds\GroupTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,6 +13,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
     	Eloquent::unguard();
+        DB::table('groups')->insert([
+            'group_name' => 'admin',
+        ]);
+
+        DB::table('groups')->insert([
+            'group_name' => 'user',
+        ]);
         $this->call(UserTableSeeder::class);
         Eloquent::reguard();
     }
