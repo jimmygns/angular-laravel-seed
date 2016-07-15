@@ -41,19 +41,22 @@ class PasswordController extends Controller
      */
     public function reset(Request $request)
     {
-        $this->validate(
-            $request,
-            $this->getResetValidationRules(),
-            $this->getResetValidationMessages(),
-            $this->getResetValidationCustomAttributes()
-        );
+
+        $value = $this->validate(
+            $request,[
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        
         $credentials = $this->getResetCredentials($request);
         $broker = $this->getBroker();
         
         $response = Password::broker($broker)->reset($credentials, function ($user, $password) {
             $this->resetPassword($user, $password);
         });
-        return $response;
+        
         switch ($response) {
             case Password::PASSWORD_RESET:
                 return response()->json(['success'=>'password reset successfully']);
