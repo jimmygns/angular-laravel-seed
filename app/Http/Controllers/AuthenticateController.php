@@ -20,6 +20,15 @@ class AuthenticateController extends Controller
 
     }
 
+    public function isAuthenticated(Request $request){
+        return response()->json(['success'=>'isAuthenticated']);
+    }
+
+    public function isAuthorized(Request $request){
+        $role = JWTAuth::parseToken()->authenticate()->group()->first()->group_name;
+        return response()->json(['role'=>$role]);
+    }
+
     public function index(){
     	$user = JWTAuth::parseToken()->authenticate();
     	return $user;

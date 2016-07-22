@@ -57,9 +57,23 @@ nav {
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
 <script src="app/js/angular-local-storage.min.js"></script>
-<script src="app/angularjs/app.js"></script>
-<script src="app/angularjs/app.router.js"></script>
 
+<script src="app/app.js"></script>
+<script src="app/app.router.js"></script>
+
+<script src="app/admin/admin.router.js"></script>
+<script src="app/admin/admin.js"></script>
+
+<script src="app/admin/admin.auth/admin.auth.js"></script>
+<script src="app/admin/admin.auth/admin.auth.controller.js"></script>
+<script src="app/admin/admin.auth/admin.auth.router.js"></script>
+
+<script src="app/admin/admin.dashboard/admin.dashboard.js"></script>
+<script src="app/admin/admin.dashboard/admin.dashboard.router.js"></script>
+<script src="app/admin/admin.dashboard/admin.dashboard.controller.js"></script>
+
+<script src="app/shared/services/auth.js"></script>
+<script src="app/shared/constants/constants.js"></script>
 
 
 </html>
