@@ -8,6 +8,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class Handler extends ExceptionHandler
 {
@@ -52,6 +53,9 @@ class Handler extends ExceptionHandler
         }
         else if ($e instanceof ValidationException) {
             return response()->json(['input_invalid'],400);
+        }
+        else if ($e instanceof JWTException) {
+            return response()->json(['token could not be parsed'],$e->getStatusCode());
         }
         return parent::render($request, $e);
     }

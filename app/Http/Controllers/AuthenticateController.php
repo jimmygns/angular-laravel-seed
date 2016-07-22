@@ -14,7 +14,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 class AuthenticateController extends Controller
 {
 
-	 public function __construct()
+	public function __construct()
     {
         $this->middleware('jwt.auth', ['except' => ['login','signup']]);
 

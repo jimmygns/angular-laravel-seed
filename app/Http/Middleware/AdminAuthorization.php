@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use JWTAuth;
 
 class AdminAuthorization
 {
@@ -15,9 +16,10 @@ class AdminAuthorization
      */
     public function handle($request, Closure $next)
     {
+        
         $user = JWTAuth::parseToken()->authenticate();
         if($user->group()->first()->group_name!='admin'){
-            return response->json('Unauthorized.', 401);
+            return response()->json('Unauthorized.', 401);
         }
         return $next($request);
     }
