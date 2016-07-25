@@ -71,6 +71,14 @@ nav {
 <script src="app/admin/admin.dashboard/admin.dashboard.js"></script>
 <script src="app/admin/admin.dashboard/admin.dashboard.router.js"></script>
 <script src="app/admin/admin.dashboard/admin.dashboard.controller.js"></script>
+<script src="app/admin/admin.dashboard/admin.dashboard.service.js"></script>
+
+<script src="app/user/user.js"></script>
+<script src="app/user/user.router.js"></script>
+<script src="app/user/user.auth/user.auth.js"></script>
+<script src="app/user/user.auth/user.auth.controller.js"></script>
+<script src="app/user/user.auth/user.auth.router.js"></script>
+
 
 <script src="app/shared/services/auth.js"></script>
 <script src="app/shared/constants/constants.js"></script>

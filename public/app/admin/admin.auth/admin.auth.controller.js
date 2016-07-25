@@ -18,7 +18,7 @@ function AdminLoginController(authService,$location,localStorageService,$state){
 		
 		authService.login(data).then(function (response) {
 			if(response.data.success){
-				$state.go('dashboard');
+				$state.go('admindashboard');
 			}
 			else{
 				console.log(response.data.error);

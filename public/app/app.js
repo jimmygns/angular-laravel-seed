@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-	.module('app', ['admin','app.router','app.auth','app.constants'])
+	.module('app', ['admin','app.router','app.auth','app.constants','user'])
 	.run(function ($rootScope, USER_ROLES, authService, $state) {
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
 			
