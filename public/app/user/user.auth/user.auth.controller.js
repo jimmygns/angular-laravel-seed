@@ -2,13 +2,13 @@
 	'use strict';
 
 	angular
-	.module('user.auth.controller',['app.auth'])
+	.module('user.auth.controller',['app.auth','ui.router'])
 	.controller('UserAuthController', UserAuthController);
 
-	UserAuthController.$inject = ['authService'];
+	UserAuthController.$inject = ['authService','$state'];
 
 	/* @ngInject */
-	function UserAuthController(authService) {
+	function UserAuthController(authService,$state) {
 		var vm = this;
 		vm.login = login;
 		
@@ -18,11 +18,11 @@
         ////////////////
 
         function activate() {
-        	vm.email="what";
+        	
         }
 
         function login(){
-        	console.log('here');
+        	
         	var data = {
         		email: vm.email,
         		password: vm.password
@@ -30,7 +30,7 @@
 
         	authService.login(data).then(function (response) {
         		if(response.data.success){
-        			console.log(response.data);
+        			$state.go('dashboard');
         		}
         		else{
         			console.log(response.data.error);

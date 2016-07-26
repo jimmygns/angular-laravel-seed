@@ -30,5 +30,14 @@ class UserTableSeeder extends Seeder
             'remember_token' => str_random(60),
             'group_id' => 1,
             ]);
+
+
+        User::create([
+            'name' => 'tester1',
+            'email' => 'tester1@me.com',
+            'password' => bcrypt('123456'),
+            'remember_token' => str_random(60),
+            'group_id' => 2,
+            ]);
     }
 }

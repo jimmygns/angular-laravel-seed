@@ -5,14 +5,16 @@
         .module('app.auth',['LocalStorageModule','app.constants'])
         .factory('authService', authService);
 
-    authService.$inject = ['$http','localStorageService','AUTH_RESPONSE','USER_ROLES'];
+    authService.$inject = ['$http','localStorageService','USER_ROLES'];
 
     /* @ngInject */
-    function authService($http,localStorageService,AUTH_RESPONSE,USER_ROLES) {
+    function authService($http,localStorageService,USER_ROLES) {
         var service = {
             login: login,
+            getUser: getUser,
             isAuthenticated: isAuthenticated,
-            isAuthorized: isAuthorized
+            isAuthorized: isAuthorized,
+            logout: logout
         };
         return service;
 
@@ -27,6 +29,20 @@
                 return response;
             });
 
+        }
+
+        function getUser(){
+            return $http({
+                method: 'GET',
+                url: '/api/v1/user',
+                headers: {
+                    'Authorization': 'Bearer '+localStorageService.get('token')
+                }
+            }).then(function successCallback(response) {
+                return response.data;
+            }, function errorCallback(response) {
+                return response.data;
+            });
         }
 
         function isAuthenticated(){
@@ -56,6 +72,21 @@
             }, function errorCallback(response) {
                 return USER_ROLES.public;
 
+            });
+        }
+
+        function logout(){
+            return $http({
+                method: 'POST',
+                url: '/api/v1/logout',
+                headers: {
+                    'Authorization': 'Bearer '+localStorageService.get('token')
+                }
+            }).then(function successCallback(response) {
+                localStorageService.remove('token');
+                return response.data;
+            }, function errorCallback(response){
+                return response.data;
             });
         }
     }

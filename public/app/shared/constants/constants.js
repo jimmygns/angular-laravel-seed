@@ -3,11 +3,9 @@
 
     angular
         .module('app.constants', [])
-        .constant("AUTH_RESPONSE",{
-        	notAuthenticated: 'authentication failed',
-        	notAuthorized: 'not authorized',
-        	authorized: 'authorized',
-        	authenticated: 'authenticated'
+        .constant("AUTH_EVENTS",{
+        	notAuthenticated: 'logout',
+        	authenticated: 'login'
         })
         .constant("USER_ROLES",{
         	admin: 'admin',

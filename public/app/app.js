@@ -3,7 +3,7 @@
 
 	angular
 	.module('app', ['admin','app.router','app.auth','app.constants','user'])
-	.run(function ($rootScope, USER_ROLES, authService, $state) {
+	.run(function ($rootScope, USER_ROLES, authService, $state, AUTH_EVENTS) {
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
 			
 			if(fromParams.skipSomeAsync){
@@ -12,8 +12,23 @@
 			
 			var authorizedRoles = toState.data.role;
 			event.preventDefault();
-			authService.isAuthorized().then(function decide(response){
+			authService.isAuthorized().then(function (response){
 				if(response!=authorizedRoles){
+					switch (response){
+						case 'public':
+							$state.go('login');
+							break;
+						case 'admin':
+							$state.go('admindashboard');
+							break;
+						case 'user':
+							$state.go('dashboard');
+							break;
+						default:
+							$state.go('/');
+							
+
+					}
 					return;
 				}
 				continueNavigation();
