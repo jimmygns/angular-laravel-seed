@@ -5,10 +5,10 @@
         .module('app.auth',['LocalStorageModule','app.constants'])
         .factory('authService', authService);
 
-    authService.$inject = ['$http','localStorageService','USER_ROLES'];
+    authService.$inject = ['$http','localStorageService','USER_ROLES','AUTH_EVENTS','$rootScope'];
 
     /* @ngInject */
-    function authService($http,localStorageService,USER_ROLES) {
+    function authService($http,localStorageService,USER_ROLES,AUTH_EVENTS,$rootScope) {
         var service = {
             login: login,
             getUser: getUser,
@@ -23,6 +23,7 @@
         function login(data) {
             return $http.post('/api/v1/login',data).then(function successCallback(response) {
                 localStorageService.set('token',response.data.success.token);
+                $rootScope.$broadcast(AUTH_EVENTS.login, 'loggedin');
                 return response;
 
             }, function errorCallback(response) {

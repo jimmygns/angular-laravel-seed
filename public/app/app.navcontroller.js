@@ -5,10 +5,10 @@
     .module('app')
     .controller('NavController', NavController);
 
-    NavController.$inject = ['USER_ROLES','AUTH_EVENTS','authService','$state'];
+    NavController.$inject = ['USER_ROLES','AUTH_EVENTS','authService','$state','$scope'];
 
     /* @ngInject */
-    function NavController(USER_ROLES,AUTH_EVENTS,authService,$state) {
+    function NavController(USER_ROLES,AUTH_EVENTS,authService,$state,$scope) {
         var vm = this;
         vm.name = '';
         vm.logout=logout;
@@ -39,6 +39,13 @@
                 $state.go('login');
             });
         }
+
+        $scope.$on(AUTH_EVENTS.login, function(){
+            vm.isLoggedin=true;
+            authService.getUser().then(function(response){
+                vm.name=response.name;
+            });
+        });
 
         
     }

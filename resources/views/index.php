@@ -36,6 +36,12 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#">Brand</a>
+        <ul class="nav navbar-nav">
+          
+          <li>
+            <a ui-sref="login">Signin</a>
+          </li>
+        </ul>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -44,13 +50,13 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right" ng-show="vm.isLoggedin">
-        
-            <li>
+          
+          <li>
             <a>{{vm.name}}</a>
-            </li>
-            <li>
+          </li>
+          <li>
             <button type="button" ng-click="vm.logout()" class="btn btn-default navbar-btn">Sign out</button>
-            </li>
+          </li>
           
         </ul>
       </div><!-- /.navbar-collapse -->
