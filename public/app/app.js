@@ -32,7 +32,7 @@
 							$state.go('main.dashboard');
 							break;
 						default:
-							$state.go('/');
+							$state.go('main.home');
 							
 
 					}

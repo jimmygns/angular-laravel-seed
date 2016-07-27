@@ -11,17 +11,17 @@
     function NavController(USER_ROLES,AUTH_EVENTS,authService,$state,$scope,data) {
         var vm = this;
         vm.logout=logout;
-
+        
         
         activate();
-
+        
+       
         ////////////////
 
         function activate() {
-            console.log(data);
         	vm.isLoggedin=data.isLoggedin;
             vm.name=data.name;
-            console.log(vm.isLoggedin);
+            
         	
         }
 
@@ -39,7 +39,6 @@
         });
 
         $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
-            console.log('ishere');
             vm.name='';
             vm.isLoggedin=false;
         });

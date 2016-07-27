@@ -5,13 +5,12 @@
         .module('user.dashboard.controller',[])
         .controller('UserDashboardController', UserDashboardController);
 
-    UserDashboardController.$inject = [];
+    UserDashboardController.$inject = ['data'];
 
     /* @ngInject */
-    function UserDashboardController() {
+    function UserDashboardController(data) {
         var vm = this;
         
-
         activate();
 
         ////////////////
