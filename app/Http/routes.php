@@ -24,6 +24,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('isAuthenticated','AuthenticateController@isAuthenticated');
     Route::get('isAuthorized','AuthenticateController@isAuthorized');
     Route::get('getUsers','AdminController@getUsers');
+    Route::post('refreshToken','AuthenticateController@refreshToken');
 
     Route::post('resetPasswordRequest','Auth\PasswordController@postEmail');
     Route::post('resetPassword','Auth\PasswordController@reset');
