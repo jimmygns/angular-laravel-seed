@@ -83,12 +83,10 @@
                 headers: {
                     'Authorization': 'Bearer '+localStorageService.get('token')
                 }
-            }).then(function successCallback(response) {
+            }).then(function (response) {
                 localStorageService.remove('token');
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess, 'loggedout');
-                return response.data;
-            }, function errorCallback(response){
-                return response.data;
+                return response;
             });
         }
     }
