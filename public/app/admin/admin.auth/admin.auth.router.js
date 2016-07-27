@@ -5,7 +5,7 @@ angular
 .module('admin.auth.router',['ui.router','app.constants'])
 .config(function($stateProvider, $urlRouterProvider,USER_ROLES) {
 	$stateProvider
-    .state('adminlogin', {
+    .state('main.adminlogin', {
       url: "/admin/login",
       templateUrl: "app/admin/admin.auth/login.html",
       controller: "AdminLoginController",

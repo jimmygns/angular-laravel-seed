@@ -5,7 +5,7 @@
 	.module('admin.dashboard.router',['ui.router','app.constants'])
 	.config(function($stateProvider, $urlRouterProvider,USER_ROLES) {
 		$stateProvider
-		.state('admindashboard', {
+		.state('main.admindashboard', {
 			url: "/admin/dashboard",
 			templateUrl: "app/admin/admin.dashboard/dashboard.html",
 			controller: "AdminDashboardController",

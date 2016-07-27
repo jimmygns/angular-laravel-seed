@@ -23,7 +23,7 @@
         function login(data) {
             return $http.post('/api/v1/login',data).then(function successCallback(response) {
                 localStorageService.set('token',response.data.success.token);
-                $rootScope.$broadcast(AUTH_EVENTS.login, 'loggedin');
+                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, 'loggedin');
                 return response;
 
             }, function errorCallback(response) {
@@ -85,6 +85,7 @@
                 }
             }).then(function successCallback(response) {
                 localStorageService.remove('token');
+                $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess, 'loggedout');
                 return response.data;
             }, function errorCallback(response){
                 return response.data;

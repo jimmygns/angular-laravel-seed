@@ -2,27 +2,34 @@
 	'use strict';
 
 	angular
-	.module('app', ['admin','app.router','app.auth','app.constants','user'])
-	.run(function ($rootScope, USER_ROLES, authService, $state, AUTH_EVENTS) {
+	.module('app', ['admin','app.router','app.auth','app.constants','user','LocalStorageModule'])
+	.run(function ($rootScope, USER_ROLES, authService, $state, AUTH_EVENTS,localStorageService) {
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, options){
+			
+			var authorizedRoles = toState.data.role;
 			
 			if(fromParams.skipSomeAsync){
 				return;
 			}
 			
-			var authorizedRoles = toState.data.role;
+			
 			event.preventDefault();
 			authService.isAuthorized().then(function (response){
+				
 				if(response!=authorizedRoles){
 					switch (response){
 						case 'public':
-							$state.go('login');
+							if(localStorageService.get('token')!=null){
+								localStorageService.remove('token');
+								$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess, 'loggedout');
+							}
+							$state.go('main.login');
 							break;
 						case 'admin':
-							$state.go('admindashboard');
+							$state.go('main.admindashboard');
 							break;
 						case 'user':
-							$state.go('dashboard');
+							$state.go('main.dashboard');
 							break;
 						default:
 							$state.go('/');

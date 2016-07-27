@@ -3,6 +3,6 @@
 
     angular
         .module('user', [
-        	'user.auth'
+        	'user.auth','user.dashboard'
         ]);
 })();

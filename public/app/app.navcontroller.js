@@ -5,46 +5,43 @@
     .module('app')
     .controller('NavController', NavController);
 
-    NavController.$inject = ['USER_ROLES','AUTH_EVENTS','authService','$state','$scope'];
+    NavController.$inject = ['USER_ROLES','AUTH_EVENTS','authService','$state','$scope','data'];
 
     /* @ngInject */
-    function NavController(USER_ROLES,AUTH_EVENTS,authService,$state,$scope) {
+    function NavController(USER_ROLES,AUTH_EVENTS,authService,$state,$scope,data) {
         var vm = this;
-        vm.name = '';
         vm.logout=logout;
 
-
-
+        
         activate();
 
         ////////////////
 
         function activate() {
-        	authService.isAuthenticated().then(function(response){
-        		vm.isLoggedin=response;
-                if(response){
-                    authService.getUser().then(function(response){
-                        vm.name=response.name;
-                    });
-                }
-
-            });
+            console.log(data);
+        	vm.isLoggedin=data.isLoggedin;
+            vm.name=data.name;
+            console.log(vm.isLoggedin);
         	
         }
 
         function logout() {
-            console.log('here');
             authService.logout().then(function(response){
-                vm.isLoggedin=false;
-                $state.go('login');
+                $state.go('main.login');
             });
         }
 
-        $scope.$on(AUTH_EVENTS.login, function(){
-            vm.isLoggedin=true;
+        $scope.$on(AUTH_EVENTS.loginSuccess, function(){        
             authService.getUser().then(function(response){
                 vm.name=response.name;
+                vm.isLoggedin=true;
             });
+        });
+
+        $scope.$on(AUTH_EVENTS.logoutSuccess, function(){
+            console.log('ishere');
+            vm.name='';
+            vm.isLoggedin=false;
         });
 
         

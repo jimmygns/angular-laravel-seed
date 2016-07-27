@@ -7,7 +7,7 @@
 		])
 	.config(function($stateProvider, $urlRouterProvider,USER_ROLES) {
 		$stateProvider
-		.state('dashboard', {
+		.state('main.dashboard', {
 			url: "/dashboard",
 			templateUrl: "app/user/user.dashboard/dashboard.html",
 			controller: "UserDashboardController",

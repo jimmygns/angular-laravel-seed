@@ -4,8 +4,8 @@
     angular
         .module('app.constants', [])
         .constant("AUTH_EVENTS",{
-        	notAuthenticated: 'logout',
-        	authenticated: 'login'
+        	logoutSuccess: 'logout',
+        	loginSuccess: 'login'
         })
         .constant("USER_ROLES",{
         	admin: 'admin',

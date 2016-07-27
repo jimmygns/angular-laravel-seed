@@ -17,6 +17,7 @@ class AuthenticateController extends Controller
 	public function __construct()
     {
         $this->middleware('jwt.auth', ['except' => ['login','signup']]);
+        $this->middleware('jwt.refresh',['only'=>'token']);
 
     }
 

@@ -5,7 +5,7 @@ angular
 .module('user.auth.router',['ui.router','app.constants'])
 .config(function($stateProvider, $urlRouterProvider,USER_ROLES) {
 	$stateProvider
-    .state('login', {
+    .state('main.login', {
       url: "/login",
       templateUrl: "app/user/user.auth/login.html",
       controller: "UserAuthController",
@@ -14,7 +14,7 @@ angular
       	role: USER_ROLES.public
       }
     })
-    .state('signup', {
+    .state('main.signup', {
       url: "/signup",
       templateUrl: "app/user/user.auth/signup.html",
       controller: "UserAuthController",

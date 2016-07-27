@@ -30,7 +30,7 @@
 
         	authService.login(data).then(function (response) {
         		if(response.data.success){
-        			$state.go('dashboard');
+        			$state.go('main.dashboard');
         		}
         		else{
         			console.log(response.data.error);
