@@ -3,7 +3,7 @@
 
 angular
 .module('admin',
-	['admin.router','admin.auth','admin.dashboard']);
+	['admin.router','admin.dashboard']);
 
 
 })();
